@@ -1,6 +1,8 @@
 <template>
   <div>
-    <router-link to="/tickets" class="home">境外游礼包</router-link>
+    <router-link to="/coupon">
+      <div class="home">境外游礼包</div>
+    </router-link>
   </div>
 </template>
 
@@ -10,9 +12,11 @@ export default {
 }
 </script>
 
-<style>
-  .home {
-    font-size: 6 rem;
-    font-family: PingFangSC-Regular, PingFang SC;
-  }
+<style lang="stylus" scoped>
+  .home
+    height: 0.8rem
+    margin-top: 0.8rem
+    text-align: center
+    font-size: 0.4rem
+    font-family: PingFangSC-Regular, PingFang SC
 </style>

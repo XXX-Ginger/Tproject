@@ -23,13 +23,12 @@ export default {
 <style lang="stylus" scoped>
   .payment
     position: relative
-    top: -1.5rem
+    top: 0.1rem
     background: #F7F7F7
     display: flex
     border-radius: 0.4rem 0.4rem 0rem 0rem
     flex-direction: column
     .title
-      background : #fff
       height: 1.3rem
       margin: 0rem 0.38rem 0rem 0.38rem
       display: flex

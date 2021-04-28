@@ -30,19 +30,8 @@
 
 <script>
 export default {
-  name: 'TicketsHeader',
-  data: function () {
-    return {
-      dist: {
-        dist: '香港',
-        distPicUrl: '../../../../static/img/picture.png'
-      },
-      brand: {
-        brandName: '屈臣氏',
-        brandUrl: '../../../../static/img/brand.png'
-      }
-    }
-  }
+  name: 'CouponHeader',
+  props: ['dist', 'brand']
 }
 </script>
 
@@ -50,6 +39,7 @@ export default {
   .header
     height: 1.6rem
     position: fixed
+    top: 0
     z-index : 999
     width: 100%
     background-image: linear-gradient(#E0442C 100%, #E74833 0%)

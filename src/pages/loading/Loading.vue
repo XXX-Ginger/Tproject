@@ -10,10 +10,14 @@
     </div>
     <div class="icon"></div>
     <div class="title">境外游礼包</div>
-    <div class="container">
-      <div class="dot" style="--i:0;"></div>
-      <div class="dot" style="--i:1;"></div>
-      <div class="dot" style="--i:2;"></div>
+    <div class="limit">
+      <div class="container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot" style="opacity: 0.5"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -52,23 +56,33 @@ export default {
       margin: 0.2rem 0 0.2rem 0
       font-family : PingFangSC-Medium, PingFang SC
       text-align: center
-    .container
+    .limit
       margin: auto
-      display :flex
-      justify-content :space-between
-      width: 0.7rem
-      .dot
-        width: 0.15rem
-        height: 0.15rem
-        border-radius: 50%
-        background : #000
-        animation: loadDot 2.1s infinite steps(1,end)
-        animation-delay : calc(0.7s * var(--i))
+      width: 0.75rem
+      height: 0.2rem
+      overflow :hidden
+      .container
+        position: relative
+        left: -0.5rem
+        display :flex
+        width: 1.25rem
+        height: 0.2rem
+        justify-content :space-around
+        .dot
+          width: 0.15rem
+          height: 0.15rem
+          border-radius: 50%
+          background : #000
+          opacity: 0.2
+          animation: loadDot 2.1s infinite steps(1,end)
   @keyframes loadDot
     0%,100%{
-      opacity : 50%
+      transform :translateX(0)
     }
     33%{
-      opacity : 20%
+      transform :translateX(0.25rem)
+    }
+    66% {
+      transform :translateX(0.5rem)
     }
 </style>

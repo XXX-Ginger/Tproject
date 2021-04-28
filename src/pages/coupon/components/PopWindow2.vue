@@ -1,5 +1,5 @@
 <template>
-    <div class="container" v-if="get">
+    <div class="container">
       <div class="filter"></div>
       <div class="main">
         <p>恭喜你获得：</p>
@@ -8,16 +8,16 @@
           <div class="content">
             <div class="scroll">
               <div class="discount">
-                <span>4</span>
+                <span :coupon-value="generalCoupon.couponValue" :value-after="valueAfter">{{valueBefore}}</span>
               </div>
               <div class="unit">
               元
               </div>
             </div>
-            <img class="icon" src="../../../../static/img/icon1.png">
+            <img class="icon" :src="iconUrl">
           </div>
         </div>
-        <button v-show="show">领取更多</button>
+        <button @click="getMore">领取更多</button>
       </div>
     </div>
 </template>
@@ -27,17 +27,31 @@ export default {
   name: 'PopWindow2',
   data () {
     return {
-      get: true,
-      show: false
+      show: true,
+      imgList: ['../../../../static/img/icon1.png', '../../../../static/img/icon2.png', '../../../../static/img/icon3.png', '../../../../static/img/icon4.png', '../../../../static/img/icon5.png'],
+      generalCoupon: {
+        couponBg: '../../../../static/paymentCoupon/境外通用.png',
+        waitingNum: 4,
+        couponValue: 3
+      }
     }
   },
   methods: {
-    showButton () {
-      setTimeout(() => { this.show = true }, 2000)
+    getMore () {
+      this.$emit('getMore')
     }
   },
-  mounted () {
-    this.showButton()
+  computed: {
+    iconUrl () {
+      let idx = 4 - this.generalCoupon.waitingNum
+      return this.imgList[idx]
+    },
+    valueBefore () {
+      return this.generalCoupon.couponValue + 1
+    },
+    valueAfter () {
+      return this.generalCoupon.couponValue + 2
+    }
   }
 }
 </script>
@@ -49,8 +63,6 @@ export default {
     z-index : 1000
     width: 100%
     height: 100%
-    // transform: scale(100%)
-    // transition: transform 0.2s ease-in
     .filter
       height: 100%
       background :#000
@@ -102,12 +114,12 @@ export default {
                 font-family: PingFangSC-Meduim, PingFang SC
                 font-size: 1.4rem
                 height : 1.5rem
-                animation: transNum 2s ease-in-out
+                animation: transNum 2s ease-out
               span::before
-                content: '3'
+                content: attr(coupon-value)
                 display: block
               span::after
-                content: '5'
+                content: attr(value-after)
                 display: block
             .unit
               color: #fff
@@ -127,11 +139,19 @@ export default {
         color: #fff
         font-family : PingFangSC-regular, PingFang SC
         font-size: 0.3rem
+        animation: showButton 2s steps(1,end)
   @keyframes transNum
     from{
       transform: translateY(-3.6rem)
     }
     to{
       transform: translateY(0rem)
+    }
+  @keyframes showButton
+    from{
+      opacity: 0
+    }
+    to{
+      opacity: 1
     }
 </style>

@@ -1,35 +1,70 @@
 <template>
   <div class="footer">
-    <div class="coupon-choice"></div>
+    <div class="coupon-choice">
+      <img class="icon" :src="iconUrl">
+      <p>{{title}}生效中</p>
+      <span class="iconfont">&#xe66e;</span>
+    </div>
     <button id="payment"></button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  data () {
+    return {
+      iconList: ['../../../../static/img/footerIcon1.png', '../../../../static/img/footerIcon2.png'],
+      titleList: ['专享超优汇率', '专享境外通用'],
+      title: '专享超优汇率',
+      iconUrl: '../../../../static/img/footerIcon1.png'
+    }
+  },
+  mounted () {
+    console.log('do')
+    this.bus.$on('clickCoupon', (msg) => {
+      if (msg === 0 || msg === 1) {
+        this.title = this.titleList[msg]
+        this.iconUrl = this.iconList[msg]
+      } else {
+        this.title = msg
+        this.iconUrl = this.iconList[1]
+      }
+    })
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
-  .footer
-    position: fixed
-    z-index: 999
-    display : flex
-    align-items : center
-    justify-content : space-around
-    bottom: 0
-    width: 100%
-    height: 1.6rem
-    background : #fff
-    .coupon-choice
-      width: 2.8rem
-      height: 0.5rem
-      background : #000
-    #payment
-      background-image: url("../../../../static/img/paymentButton.png")
-      background-size :100%
-      width: 2.5rem
-      height: 0.8rem
-      border-radius: 0.1rem
+.footer
+  position: fixed
+  bottom: 0
+  z-index: 999
+  display : flex
+  align-items : center
+  justify-content :space-around
+  width: 100%
+  height: 1.6rem
+  background : #fff
+  .coupon-choice
+    display :flex
+    align-items :center
+    height: 0.8rem
+    width: 4rem
+    margin-left: 0.3rem
+    .icon
+      width: 0.5rem
+      height: 0.45rem
+    p
+      margin-left: 0.2rem
+      opacity: 0.5
+    span
+      font-size: 0.35rem
+      opacity: 0.5
+  #payment
+    background-image: url("../../../../static/img/paymentButton.png")
+    background-size :100%
+    width: 2.5rem
+    height: 0.8rem
+    border-radius: 0.1rem
 </style>

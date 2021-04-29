@@ -78,3 +78,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 通过 v-if 控制在获取到数据前展示Loading页面，获取数据后，Loading页面消失，进入主要页面。
 
+(为使效果更为明显，让loading页面在获取到数据后多停留2s)

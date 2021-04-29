@@ -25,15 +25,11 @@
 <script>
 export default {
   name: 'PopWindow2',
+  props: ['generalCoupon'],
   data () {
     return {
       show: true,
-      imgList: ['../../../../static/img/icon1.png', '../../../../static/img/icon2.png', '../../../../static/img/icon3.png', '../../../../static/img/icon4.png', '../../../../static/img/icon5.png'],
-      generalCoupon: {
-        couponBg: '../../../../static/paymentCoupon/境外通用.png',
-        waitingNum: 4,
-        couponValue: 3
-      }
+      imgList: ['../../../../static/img/icon1.png', '../../../../static/img/icon2.png', '../../../../static/img/icon3.png', '../../../../static/img/icon4.png', '../../../../static/img/icon5.png']
     }
   },
   methods: {

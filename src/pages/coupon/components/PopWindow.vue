@@ -1,7 +1,7 @@
 <template>
   <div v-if="special">
-    <pop-window-1 v-show="showRate" @getNext="handleShowRate"></pop-window-1>
-    <pop-window-2 v-show="showGeneral" @getMore="handleShowGeneral"></pop-window-2>
+    <pop-window-1 :exchangeCoupon="exchangeCoupon" v-show="showRate" @getNext="handleShowRate"></pop-window-1>
+    <pop-window-2 :generalCoupon="generalCoupon" v-show="showGeneral" @getMore="handleShowGeneral"></pop-window-2>
   </div>
 </template>
 
@@ -11,33 +11,34 @@ import PopWindow2 from './PopWindow2'
 
 export default {
   name: 'PopWindow',
+  props: ['exchangeCoupon', 'generalCoupon', 'getRate', 'getGeneral'],
   components: {
     PopWindow1,
     PopWindow2
   },
   data () {
     return {
-      getRate: false,
-      getGeneral: false
+      changeGetRate: this.getRate,
+      changeGetGeneral: this.getGeneral
     }
   },
   methods: {
     handleShowRate () {
-      this.getRate = true
+      this.changeGetRate = true
     },
     handleShowGeneral () {
-      this.getGeneral = true
+      this.changeGetGeneral = true
     }
   },
   computed: {
     special () {
-      return !this.getRate || !this.getGeneral
+      return !this.changeGetRate || !this.changeGetGeneral
     },
     showRate () {
-      return !this.getRate
+      return !this.changeGetRate
     },
     showGeneral () {
-      return !this.getGeneral && this.getRate
+      return !this.changeGetGeneral && this.changeGetRate
     }
   }
 }

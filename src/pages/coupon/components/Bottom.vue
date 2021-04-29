@@ -1,16 +1,16 @@
 <template>
   <div style="width:100%">
-    <div class="more">
+    <router-link type="div" class="more" to="/more">
       <div class="icon">
         <img style="width: 0.7rem; height: 0.7re; float: right" src="../../../../static/img/icon.png">
       </div>
       <p>更多商家优惠</p>
       <span class="iconfont">&#xe66e;</span>
-    </div>
+    </router-link>
     <div class="info">
-      <button>活动规则</button>
+      <router-link type="button" class="button" to="/rule">活动规则</router-link>
         <div></div>
-      <button>联系客服</button>
+      <router-link type="button" class="button" to="/service">联系客服</router-link>
     </div>
   </div>
 </template>
@@ -48,7 +48,8 @@ export default {
   margin-top: 0.8rem
   margin-bottom: 1.6rem
   opacity: 0.5
-  button
+  .button
+    color: #000
     padding: 0.15rem
     background :none
     font-family: PingFangSC-Light

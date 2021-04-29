@@ -14,16 +14,7 @@
 <script>
 export default {
   name: 'CouponOne',
-  data () {
-    return {
-      exchangeCoupon: {
-        couponBg: '../../../../static/paymentCoupon/超优汇率.png',
-        currency: '港币',
-        discount: '85.51',
-        rate: '85.80'
-      }
-    }
-  },
+  props: ['exchangeCoupon'],
   methods: {
     clickRate () {
       console.log('clickRate')

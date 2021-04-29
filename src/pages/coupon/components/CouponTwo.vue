@@ -12,15 +12,7 @@
 <script>
 export default {
   name: 'CouponTwo',
-  data () {
-    return {
-      generalCoupon: {
-        couponBg: '../../../../static/paymentCoupon/境外通用.png',
-        waitingNum: 4,
-        couponValue: 3
-      }
-    }
-  },
+  props: ['generalCoupon'],
   methods: {
     clickGeneral () {
       console.log('clickGeneral')

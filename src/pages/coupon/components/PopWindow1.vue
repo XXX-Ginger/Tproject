@@ -25,16 +25,7 @@
 <script>
 export default {
   name: 'PopWindow1',
-  data () {
-    return {
-      exchangeCoupon: {
-        couponBg: '../../../../static/paymentCoupon/超优汇率.png',
-        currency: '港币',
-        discount: '85.51',
-        rate: '85.80'
-      }
-    }
-  },
+  props: ['exchangeCoupon'],
   methods: {
     getNext () {
       console.log('sss')

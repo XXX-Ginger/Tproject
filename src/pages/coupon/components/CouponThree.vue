@@ -19,22 +19,7 @@ export default {
   props: ['item'],
   data () {
     return {
-      title: this.item.title,
-      paymentCouponList: [{
-        id: '0001',
-        title: '屈臣氏专享券',
-        value: '20',
-        limit: '满300元可用',
-        validity: '21天内有效',
-        range: '香港地区屈臣氏线下门店可用'
-      }, {
-        id: '0002',
-        title: '香港药妆立减券',
-        value: '50',
-        limit: '满300元可用',
-        validity: '21天内有效',
-        range: '香港地区的药妆种类商户中均可使用'
-      }]
+      title: this.item.title
     }
   },
   methods: {

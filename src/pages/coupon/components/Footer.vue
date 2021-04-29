@@ -5,7 +5,7 @@
       <p>{{title}}生效中</p>
       <span class="iconfont">&#xe66e;</span>
     </div>
-    <button id="payment"></button>
+    <router-link type="button" to="/payment" id="payment"></router-link>
   </div>
 </template>
 
@@ -14,10 +14,10 @@ export default {
   name: 'Footer',
   data () {
     return {
-      iconList: ['../../../../static/img/footerIcon1.png', '../../../../static/img/footerIcon2.png'],
+      iconList: ['/static/footer/footerIcon1.png', '/static/footer/footerIcon2.png'],
       titleList: ['专享超优汇率', '专享境外通用'],
       title: '专享超优汇率',
-      iconUrl: '../../../../static/img/footerIcon1.png'
+      iconUrl: '/static/footer/footerIcon1.png'
     }
   },
   mounted () {
@@ -62,7 +62,7 @@ export default {
       font-size: 0.35rem
       opacity: 0.5
   #payment
-    background-image: url("../../../../static/img/paymentButton.png")
+    background-image: url("/static/footer/paymentButton.png")
     background-size :100%
     width: 2.5rem
     height: 0.8rem

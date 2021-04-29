@@ -1,6 +1,6 @@
 <template>
   <div class="coupon1" @click="clickRate">
-    <img class="bg1" src="../../../../static/paymentCoupon/超优汇率.png">
+    <img class="bg1" src="/static/paymentCoupon/超优汇率.png">
     <div class="content1">
       <span>100{{exchangeCoupon.currency}}={{exchangeCoupon.discount}}人民币
       </span>
@@ -17,7 +17,6 @@ export default {
   props: ['exchangeCoupon'],
   methods: {
     clickRate () {
-      console.log('clickRate')
       this.bus.$emit('clickCoupon', 0)
     }
   }

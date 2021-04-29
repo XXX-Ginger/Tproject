@@ -1,7 +1,7 @@
 <template>
   <div class="store-coupon">
     <div class="coupon" v-for="item of storeCouponList" :key="item.id">
-      <img class="picture" src="../../../../static/storeCoupon/store.png">
+      <img class="picture" src="/static/storeCoupon/store.png">
       <div class="content">
         <p>{{item.brand}}</p>
         <p>{{item.title}}</p>

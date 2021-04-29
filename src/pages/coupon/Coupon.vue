@@ -1,21 +1,27 @@
 <template>
   <div>
-    <coupon-header :dist="dist" :brand="brand"></coupon-header>
-    <div class="container">
-      <module-title :title="moduleTitle1"></module-title>
-      <coupon-one :exchangeCoupon="exchangeCoupon"></coupon-one>
-      <coupon-two :generalCoupon="generalCoupon"></coupon-two>
-      <coupon-three v-for="item of paymentCouponList" :key="item.id" :item="item"></coupon-three>
-      <module-title :title="moduleTitle2"></module-title>
-      <coupon-four :storeCouponList="storeCouponList"></coupon-four>
-      <bottom></bottom>
+    <loading v-if="!showMain"></loading>
+    <div v-else>
+      <coupon-header :dist="dist" :brand="brand"></coupon-header>
+      <div class="container">
+        <module-title :title="moduleTitle1"></module-title>
+        <coupon-one :exchangeCoupon="exchangeCoupon"></coupon-one>
+        <coupon-two :generalCoupon="generalCoupon"></coupon-two>
+        <coupon-three v-for="item of paymentCouponList" :key="item.id" :item="item"></coupon-three>
+        <module-title :title="moduleTitle2"></module-title>
+        <coupon-four :storeCouponList="storeCouponList"></coupon-four>
+        <bottom></bottom>
+      </div>
+      <Footer></Footer>
+      <pop-window :exchangeCoupon="exchangeCoupon"
+                  :generalCoupon="generalCoupon"
+                  :getRate="getRate"
+                  :getGeneral="getGeneral"
+                  v-if="special"
+                  @getRate="changeGetRate"
+                  @getGeneral="changeGetGeneral">
+      </pop-window>
     </div>
-    <Footer></Footer>
-    <pop-window :exchangeCoupon="exchangeCoupon"
-                :generalCoupon="generalCoupon"
-                :getRate="getRate"
-                :getGeneral="getGeneral">
-    </pop-window>
   </div>
 </template>
 
@@ -29,10 +35,13 @@ import CouponFour from './components/CouponFour'
 import Bottom from './components/Bottom'
 import Footer from './components/Footer'
 import PopWindow from './components/PopWindow'
+import Loading from './components/Loading'
 import Vue from 'vue'
 import axios from 'axios'
 
 Vue.prototype.bus = new Vue()
+
+var root = process.env.ROOT_API
 
 export default {
   name: 'Coupon',
@@ -45,94 +54,57 @@ export default {
     CouponFour,
     Bottom,
     Footer,
-    PopWindow
+    PopWindow,
+    Loading
   },
   data () {
     return {
-      moduleTitle1: '微信支付优惠券',
-      moduleTitle2: '商户优惠券',
-      getRate: false,
-      getGeneral: false,
-      dist: {
-        dist: '香港',
-        distPicUrl: '../../../../static/img/picture.png'
-      },
-      brand: {
-        brandName: '屈臣氏',
-        brandUrl: '../../../../static/img/brand.png'
-      },
-      exchangeCoupon: {
-        couponBg: '../../../../static/paymentCoupon/超优汇率.png',
-        currency: '港币',
-        discount: '85.51',
-        rate: '85.80'
-      },
-      generalCoupon: {
-        couponBg: '../../../../static/paymentCoupon/境外通用.png',
-        waitingNum: 4,
-        couponValue: 3
-      },
-      paymentCouponList: [{
-        id: '0001',
-        title: '屈臣氏专享券',
-        value: '20',
-        limit: '满300元可用',
-        validity: '21天内有效',
-        range: '香港地区屈臣氏线下门店可用'
-      }, {
-        id: '0002',
-        title: '香港药妆立减券',
-        value: '50',
-        limit: '满300元可用',
-        validity: '21天内有效',
-        range: '香港地区的药妆种类商户中均可使用'
-      }],
-      storeCouponList: [{
-        id: '0001',
-        brand: 'Hallmork Babies',
-        title: '新品折扣券',
-        discountValue: '9',
-        discountUnit: '折',
-        discountImg: '',
-        limit: '满300港币可用',
-        decoLimit: ''
-      }, {
-        id: '0002',
-        brand: 'Designer Trend',
-        title: '精美礼品券',
-        discountValue: '',
-        discountUnit: '',
-        discountImg: '../../../../static/storeCoupon/discountImg.png',
-        limit: '满300港币可得',
-        decoLimit: ''
-      }, {
-        id: '0003',
-        brand: 'Patit Bateau',
-        title: '全场通用券',
-        discountValue: '20',
-        discountUnit: '港币',
-        discountImg: '',
-        limit: '满300港币可用',
-        decoLimit: ''
-      }, {
-        id: '0004',
-        brand: 'The Runabouts',
-        title: '桌上吸尘器',
-        discountValue: '80',
-        discountUnit: '港币',
-        discountImg: '',
-        limit: '原价',
-        decoLimit: '82.5港币'
-      }]
+      showMain: false,
+      moduleTitle1: '',
+      moduleTitle2: '',
+      getRate: true,
+      getGeneral: true,
+      dist: {},
+      brand: {},
+      exchangeCoupon: {},
+      generalCoupon: {},
+      paymentCouponList: [],
+      storeCouponList: []
     }
   },
   methods: {
     getInfo () {
-      axios.get('/api/coupon.json')
+      let url = process.env.NODE_ENV === 'development' ? '/static/mock/coupon.json' : root + '/static/mock/coupon.json'
+      axios.get(url)
         .then(this.getInfoSucc)
     },
     getInfoSucc (res) {
-      console.log(res)
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.moduleTitle1 = data.moduleTitle1
+        this.moduleTitle2 = data.moduleTitle2
+        this.getRate = data.getRate
+        this.getGeneral = data.getGeneral
+        this.dist = data.dist
+        this.brand = data.brand
+        this.exchangeCoupon = data.exchangeCoupon
+        this.generalCoupon = data.generalCoupon
+        this.paymentCouponList = data.paymentCouponList
+        this.storeCouponList = data.storeCouponList
+        setTimeout(() => { this.showMain = true }, 2000)
+      }
+    },
+    changeGetRate (msg) {
+      this.getRate = msg
+    },
+    changeGetGeneral (msg) {
+      this.getGeneral = msg
+    }
+  },
+  computed: {
+    special () {
+      return !this.getRate || !this.getGeneral
     }
   },
   mounted () {

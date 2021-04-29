@@ -4,7 +4,7 @@
     <div class="main">
       <p>恭喜你获得：</p>
       <div class="coupon">
-        <img class="coupon-bg" src="../../../../static/img/汇率bg.png">
+        <img class="coupon-bg" src="/static/popWindow/汇率bg.png">
         <div class="content">
           <div class="discount">
             <span>100{{exchangeCoupon.currency}}=</span>
@@ -28,7 +28,6 @@ export default {
   props: ['exchangeCoupon'],
   methods: {
     getNext () {
-      console.log('sss')
       this.$emit('getNext')
     }
   }

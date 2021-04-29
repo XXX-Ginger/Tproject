@@ -1,5 +1,5 @@
 <template>
-  <div v-if="special">
+  <div>
     <pop-window-1 :exchangeCoupon="exchangeCoupon" v-show="showRate" @getNext="handleShowRate"></pop-window-1>
     <pop-window-2 :generalCoupon="generalCoupon" v-show="showGeneral" @getMore="handleShowGeneral"></pop-window-2>
   </div>
@@ -25,15 +25,14 @@ export default {
   methods: {
     handleShowRate () {
       this.changeGetRate = true
+      this.$emit('getRate', this.changeGetRate)
     },
     handleShowGeneral () {
       this.changeGetGeneral = true
+      this.$emit('getGeneral', this.changeGetGeneral)
     }
   },
   computed: {
-    special () {
-      return !this.changeGetRate || !this.changeGetGeneral
-    },
     showRate () {
       return !this.changeGetRate
     },

@@ -2,7 +2,7 @@
   <div style="width:100%">
     <router-link type="div" class="more" to="/more">
       <div class="icon">
-        <img style="width: 0.7rem; height: 0.7re; float: right" src="../../../../static/img/icon.png">
+        <img style="width: 0.7rem; height: 0.7re; float: right" src="/static/icon/icon.png">
       </div>
       <p>更多商家优惠</p>
       <span class="iconfont">&#xe66e;</span>

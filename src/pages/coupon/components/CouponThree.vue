@@ -1,6 +1,6 @@
 <template>
   <div class="coupon2" @click="clickOthers">
-    <img class="bg2" src="../../../../static/paymentCoupon/普通.png">
+    <img class="bg2" src="/static/paymentCoupon/普通.png">
     <div class="content3">
       <div class="info1">
         <span>{{item.value}}</span>
@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     clickOthers () {
-      console.log(this.item.title)
       this.bus.$emit('clickCoupon', this.title)
     }
   }

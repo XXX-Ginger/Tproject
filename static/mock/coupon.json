@@ -7,20 +7,20 @@
     "getGeneral": false,
     "dist": {
       "dist": "香港",
-      "distPicUrl": "../../../../static/img/picture.png"
+      "distPicUrl": "/static/distBrand/dist.png"
     },
     "brand": {
       "brandName": "屈臣氏",
-      "brandUrl": "../../../../static/img/brand.png"
+      "brandUrl": "/static/distBrand/brand.png"
     },
     "exchangeCoupon": {
-      "couponBg": "../../../../static/paymentCoupon/超优汇率.png",
+      "couponBg": "/static/paymentCoupon/超优汇率.png",
       "currency": "港币",
       "discount": 85.51,
       "rate": 85.80
     },
     "generalCoupon": {
-      "couponBg": "../../../../static/paymentCoupon/境外通用.png",
+      "couponBg": "/static/paymentCoupon/境外通用.png",
       "waitingNum": 4,
       "couponValue": 3
     },
@@ -54,7 +54,7 @@
       "title": "精美礼品券",
       "discountValue": "",
       "discountUnit": "",
-      "discountImg": "../../../../static/storeCoupon/discountImg.png",
+      "discountImg": "/static/storeCoupon/discountImg.png",
       "limit": "满300港币可得",
       "decoLimit": ""
     }, {

@@ -4,7 +4,7 @@
       <div class="main">
         <p>恭喜你获得：</p>
         <div class="coupon">
-          <img class="coupon-bg" src="../../../../static/img/通用bg.png">
+          <img class="coupon-bg" src="/static/popWindow/通用bg.png">
           <div class="content">
             <div class="scroll">
               <div class="discount">
@@ -29,7 +29,7 @@ export default {
   data () {
     return {
       show: true,
-      imgList: ['../../../../static/img/icon1.png', '../../../../static/img/icon2.png', '../../../../static/img/icon3.png', '../../../../static/img/icon4.png', '../../../../static/img/icon5.png']
+      imgList: ['/static/popWindow/icon1.png', '/static/popWindow/icon2.png', '/static/popWindow/icon3.png', '/static/popWindow/icon4.png', '/static/popWindow/icon5.png']
     }
   },
   methods: {

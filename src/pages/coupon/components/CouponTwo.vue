@@ -1,6 +1,6 @@
 <template>
   <div class="coupon1" @click="clickGeneral">
-    <img class="bg2" src="../../../../static/paymentCoupon/境外通用.png">
+    <img class="bg2" src="/static/paymentCoupon/境外通用.png">
     <div class="content2">
       <p>{{generalCoupon.couponValue}}</p>
       <span>{{generalCoupon.waitingNum}}张待解锁</span>
@@ -15,7 +15,6 @@ export default {
   props: ['generalCoupon'],
   methods: {
     clickGeneral () {
-      console.log('clickGeneral')
       this.bus.$emit('clickCoupon', 1)
     }
   }
